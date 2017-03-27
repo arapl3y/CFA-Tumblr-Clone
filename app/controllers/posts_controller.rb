@@ -10,6 +10,9 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    # To set up the variable for our comment form
+    @comment = Comment.new
+    @comments = @post.comments
   end
 
   # GET /posts/new

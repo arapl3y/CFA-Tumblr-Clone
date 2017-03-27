@@ -15,5 +15,15 @@
   <%= @post.user.email %>
 </p>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Edit', edit_post_path(@post) %>
+
+<%= render 'comments/form', comment: @comment %>
+
 <%= link_to 'Back', posts_path %>
+
+
+<% @comments.each do |comment| %>
+  <p><%= comment.user.email %></p>
+  <p><%= comment.content %></p>
+  <p><%= comment.created_at.strftime('%b %d, %Y') %></p>
+<% end %>
