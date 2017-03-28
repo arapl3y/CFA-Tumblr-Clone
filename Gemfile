@@ -14,6 +14,12 @@ gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 # Use devise for User auth
 gem 'devise'
+# Use OmniAuth Facebook for login
+gem 'omniauth-facebook'
+# Use Social Share button for social sharing
+gem 'social-share-button'
+# Use Bootstrap for stylesheets
+gem 'bootstrap-sass', '~> 3.3.6'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets

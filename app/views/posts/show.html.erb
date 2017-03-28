@@ -1,29 +1,43 @@
 <p id="notice"><%= notice %></p>
 
+<div class="well">
 <p>
-  <strong>Title:</strong>
-  <%= @post.title %>
+    <strong>Title:</strong>
+    <%= @post.title %>
 </p>
 
 <p>
-  <strong>Content:</strong>
-  <%= @post.content %>
+    <strong>Post:</strong>
+    <%= @post.content %>
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @post.user.email %>
+    <strong>User:</strong>
+    <%= @post.user.email %>
 </p>
+
+<%= social_share_button_tag(@post.content) %>
 
 <%= link_to 'Edit', edit_post_path(@post) %>
+</div>
+
+
+<hr/>
 
 <%= render 'comments/form', comment: @comment %>
 
-<%= link_to 'Back', posts_path %>
+<h3>Comments:</h3>
 
+<div class="row">
 
-<% @comments.each do |comment| %>
-  <p><%= comment.user.email %></p>
-  <p><%= comment.content %></p>
-  <p><%= comment.created_at.strftime('%b %d, %Y') %></p>
-<% end %>
+    <% @comments.each do |comment| %>
+    <div class="col-xs-4">
+        <div class="well">
+            <h5><%= comment.user.email %></h5>
+            <p><%= comment.content %></p>
+            <p class="text-muted"><%= comment.created_at.strftime('%b %d, %Y') %></p>
+        </div>
+    </div>
+    <% end %>
+
+</div>
