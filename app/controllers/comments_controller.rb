@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   # GET /posts/:post_id/comments.xml
   def index
     #1st you retrieve the post thanks to params[:post_id]
-    post = Post.find(params[:post_id])
+    post = Post.friendly.find(params[:post_id])
     #2nd you get all the comments of this post
     @comments = post.comments
 
@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
   # GET /comments/:id.xml
   def show
     #1st you retrieve the post thanks to params[:post_id]
-    post = Post.find(params[:post_id])
+    post = Post.friendly.find(params[:post_id])
     #2nd you retrieve the comment thanks to params[:id]
     @comment = post.comments.find(params[:id])
 
@@ -31,7 +31,7 @@ class CommentsController < ApplicationController
   # GET /posts/:post_id/comments/new.xml
   def new
     #1st you retrieve the post thanks to params[:post_id]
-    @post = Post.find(params[:post_id])
+    @post = Post.friendly.find(params[:post_id])
     #2nd you build a new one
     @comment = @post.comments.new
 
@@ -44,7 +44,7 @@ class CommentsController < ApplicationController
   # GET /posts/:post_id/comments/:id/edit
   def edit
     #1st you retrieve the post thanks to params[:post_id]
-    post = Post.find(params[:post_id])
+    post = Post.friendly.find(params[:post_id])
     #2nd you retrieve the comment thanks to params[:id]
     @comment = post.comments.find(params[:id])
   end
@@ -53,17 +53,17 @@ class CommentsController < ApplicationController
   # POST /posts/:post_id/comments.xml
   def create
     #1st you retrieve the post thanks to params[:post_id]
-    post = Post.find(params[:post_id])
+    @post = Post.friendly.find(params[:post_id])
     #2nd you create the comment with arguments in params[:comment]
     # @comment = post.comments.create(comment_params)
     @comment = Comment.create(comment_params)
     @comment.user_id = current_user.id
-    @comment.post_id = params[:post_id]
+    @comment.post_id = @post.id
 
     respond_to do |format|
       if @comment.save
         #1st argument of redirect_to is an array, in order to build the correct route to the nested resource comment
-        format.html { redirect_to([@comment.post, @comment], :notice => 'Comment was successfully created.') }
+        format.html { redirect_to([@comment.post], :notice => 'Comment was successfully created.') }
         #the key :location is associated to an array in order to build the correct route to the nested resource comment
         format.xml  { render :xml => @comment, :status => :created, :location => [@comment.post, @comment] }
       else
@@ -77,7 +77,7 @@ class CommentsController < ApplicationController
   # PUT /posts/:post_id/comments/:id.xml
   def update
     #1st you retrieve the post thanks to params[:post_id]
-    post = Post.find(params[:post_id])
+    post = Post.friendly.find(params[:post_id])
     #2nd you retrieve the comment thanks to params[:id]
     @comment = post.comments.find(params[:id])
 
@@ -97,14 +97,14 @@ class CommentsController < ApplicationController
   # DELETE /posts/:post_id/comments/1.xml
   def destroy
     #1st you retrieve the post thanks to params[:post_id]
-    post = Post.find(params[:post_id])
+    post = Post.friendly.find(params[:post_id])
     #2nd you retrieve the comment thanks to params[:id]
     @comment = post.comments.find(params[:id])
     @comment.destroy
 
     respond_to do |format|
       #1st argument reference the path /posts/:post_id/comments/
-      format.html { redirect_to(post_comments_url) }
+      format.html { redirect_to(@comment.post) }
       format.xml  { head :ok }
     end
 

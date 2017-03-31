@@ -12,12 +12,16 @@ gem 'rails', '~> 5.0.2'
 gem 'pg', '~> 0.18'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
+# Use FontAwesome for icons
+gem 'font-awesome-sass', '~> 4.7.0'
 # Use devise for User auth
 gem 'devise'
 # Use OmniAuth Facebook for login
 gem 'omniauth-facebook'
 # Use Social Share button for social sharing
 gem 'social-share-button'
+# Use Friendly Id for URL slugs
+gem 'friendly_id', '~> 5.1.0'
 # Use Bootstrap for stylesheets
 gem 'bootstrap-sass', '~> 3.3.6'
 # Use SCSS for stylesheets

@@ -1,28 +1,33 @@
 <p id="notice"><%= notice %></p>
 
-<h1>All Posts</h1>
+<div class="row blog-post">
+    <div class="col-xs-12 col-sm-12">
+        <% @posts.each do |post| %>
+        <div class=" well">
+            <div class="title">
+                <h1><%= post.title %></h1>
+                <p>
+                    <i>-
+                        <%= post.user.email %>
+                        <br>
+                        <%= post.created_at.strftime('%m/%d/%Y') %></i>
+                </p>
 
+                <div class="row icons">
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+                    <%= link_to icon('eye'), post %>
+                    <%= link_to icon('pencil'), edit_post_path(post) %>
+                    <%= link_to icon('trash'), post, method: :delete, data: { confirm: 'Are you sure?'} %>
 
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.title %></td>
-        <td><%= post.content %></td>
-        <td><%= post.user.email %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+                    <%= social_share_button_tag(post.content) %>
+                </div>
+            </div>
+
+            <p><%= post.content %></p>
+
+        </div>
+
+        <% end %>
+
+    </div>
+</div>

@@ -1,11 +1,23 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
 @import 'social-share-button';
 @import 'posts';
 @import 'pages';
 @import 'comments';
 
+
+html {
+  height: 100%;
+}
+
 body {
+  background: url('//paper-leaf.com/wp-content/uploads/2014/03/april-2014-iPhone_lamb-Calendar-Wallpaper.jpg?utm_source=twitter&utm_medium=web&utm_campaign=aprilwallpaper-iphone4-lamb') no-repeat center center;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;
   background-color: #96ada5;
   width: 100%;
   font-family: 'Source Sans Pro', sans-serif;
@@ -25,10 +37,50 @@ nav.navbar {
   }
 }
 
-
 .navbar-brand a img {
   width: 60px;
   height: 60px;
   position: relative;
   top: -20px;
+}
+
+.blog-post .well {
+  padding: 0;
+  margin-top: 30px;
+  border: 0;
+}
+
+.blog-post .title {
+  background-color: #333;
+  color: ghostwhite;
+  width: 100%;
+  height: 100%;
+}
+
+.blog-post .title h1 {
+  margin-top: 0;
+  padding: 20px;
+  padding-bottom: 0;
+}
+
+.blog-post .title p {
+  margin: 0;
+  padding-left: 45px;
+}
+
+.blog-post .icons {
+  padding-left: 60px;
+}
+
+.blog-post .icons i {
+  font-size: 1.4em;
+  padding: 2px;
+  color: ghostwhite;
+}
+
+.blog-post p {
+  margin-top: 20px;
+  font-size: 1.2em;
+  padding: 20px 60px;
+  line-height: 1.6;
 }
